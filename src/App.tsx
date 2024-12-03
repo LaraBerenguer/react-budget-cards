@@ -1,33 +1,59 @@
 import React from "react";
-import { useState, useContext } from "react";
 import Card from './components/Card.tsx';
+import Header from './components/Header.tsx';
 import services from './data.tsx';
+import TotalPrice from "./components/TotalPrice.tsx";
 
-const cardContent = React.createContext<number | null>(null);
+interface CardContext {
+    description: string;
+    title: string;
+    price: number;
+    key: number;
+    isChecked: boolean;
+    handleCheck: () => void;
+};
+
+/*interface priceNumber {
+    calculateTotalPrice: () => number;
+}*/
+
+export interface TotalPriceProps {
+    price: () => number;
+}
+
+export const cardContent = React.createContext<CardContext | null>(null);
+//export const priceNumber = React.createContext<priceNumber | null>(null);
 
 const App = () => {
-    const [isChecked, setIsChecked] = React.useState<boolean>(false);
+    const [checkedState, setCheckedState] = React.useState<boolean[]>(Array(services.length).fill(false));
 
-    function handleCheck(): void {
-        setIsChecked(!isChecked);
+    function calculateTotalPrice() {
+        let totalPrice = services.reduce((total, service, index) => {
+            return checkedState[index] ? total + service.price : total;
+        }, 0);
+
+        return totalPrice;
+    }
+
+    function handleCheck(index: number) {
+        let newChecked = [...checkedState];
+        newChecked[index] = !newChecked[index];
+        setCheckedState(newChecked);
     };
-
-
-    /*let firstCard: Data = services[0];
-    let secondCard: Data = services[1];
-    let thirdCard: Data = services[2];*/
 
     return (
 
         <div className="Container">
-            {services.map(service => (
-              <cardContent.Provider value={services.id} key={services.id} description={services.description} isChecked={isChecked} handleCheck={handleCheck}>
-                <Card />
-            </cardContent.Provider>  
-            ))}           
-
+            <Header />
+            {services.map((service, index) => (
+                <cardContent.Provider value={{ description: service.description, title: service.name, price: service.price, key: service.id, isChecked: checkedState[index], handleCheck: () => handleCheck(index) }}>
+                    <Card />
+                </cardContent.Provider>
+            ))}
+            {/*<priceNumber.Provider value={{ calculateTotalPrice: () => calculateTotalPrice() }}>*/}
+                <TotalPrice price={calculateTotalPrice}/>
+            {/*</priceNumber.Provider>*/}
         </div>
-
     );
 };
 

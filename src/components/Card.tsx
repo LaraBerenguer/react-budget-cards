@@ -1,21 +1,32 @@
-import React, {useContext, useState} from 'react';
-import {CardContext} from '../App';
+import { useContext } from 'react';
+import { cardContent } from '../App';
 import './cardStyles.css';
-
-let cardProps = useContext(cardContent)
 
 
 export default function Card() {
 
+    let context = useContext(cardContent);
+    let { id, description, isChecked, handleCheck, title, price } = context;
+
     return (
         <div className="Card">
-            <input
-            type="checkbox"
-            id={cardProps.id}
-            checked={cardProps.isChecked}
-            onChange={handleCheck}                
-            />
-            <p>{cardProps.description}</p>
+            <div className='CardTextContainer'>
+                <h2 className='CardTitle'>{title}</h2>
+                <p className='CardDescription'>{description}</p>
+            </div>
+            <div className='CardPriceContainer'>
+                <p className='CardPrice'>{price}</p>
+                <p>€</p>
+            </div>
+            <div className='CardInputContainer'>
+                <input
+                    type="checkbox"
+                    id={`${id}`}
+                    checked={isChecked}
+                    onChange={handleCheck}
+                />
+                <p>Select</p>
+            </div>
         </div>
     )
 }
