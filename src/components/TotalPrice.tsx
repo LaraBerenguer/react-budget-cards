@@ -1,11 +1,6 @@
 //import styles
-//import { useContext } from 'react';
-//import { priceNumber } from '../App';
 import React from "react";
 import {TotalPriceProps} from '../App';
-
-/*let priceContext = useContext(priceNumber);
-let { calculateTotalPrice} = priceContext;*/
 
 const TotalPrice: React.FC<TotalPriceProps> = ({ price }) => {
     return (

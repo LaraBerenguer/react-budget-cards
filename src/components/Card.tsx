@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { cardContent } from '../App';
+import WebOptions from "../components/WebOptions";
 import './cardStyles.css';
 
 
 export default function Card() {
 
     let context = useContext(cardContent);
-    let { id, description, isChecked, handleCheck, title, price } = context;
+    let { key, description, isChecked, handleCheck, title, price } = context;
 
     return (
         <div className="Card">
@@ -21,12 +22,17 @@ export default function Card() {
             <div className='CardInputContainer'>
                 <input
                     type="checkbox"
-                    id={`${id}`}
+                    id={`${key}`}
                     checked={isChecked}
                     onChange={handleCheck}
                 />
                 <p>Select</p>
             </div>
+            {key === 3 && isChecked && (
+                <div className='webOptionsContainer'>
+                    <WebOptions />
+                </div>
+            )}
         </div>
     )
 }
