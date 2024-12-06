@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { webOptionsContent } from '../App';
+import { webOptionsContent } from '../Pricing/Pricing';
 
 
 export default function WebOptions() {

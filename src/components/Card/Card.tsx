@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { cardContent } from '../App';
-import WebOptions from "../components/WebOptions";
+import { cardContent } from '../Pricing/Pricing';
+import WebOptions from "../WebOptions/WebOptions";
 import './cardStyles.css';
 
 

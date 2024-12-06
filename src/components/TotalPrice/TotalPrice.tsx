@@ -1,6 +1,6 @@
 //import styles
 import React from "react";
-import {TotalPriceProps} from '../App';
+import {TotalPriceProps} from '../Pricing/Pricing';
 
 const TotalPrice: React.FC<TotalPriceProps> = ({ price }) => {
     return (
