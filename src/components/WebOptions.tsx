@@ -15,7 +15,7 @@ export default function WebOptions() {
 
     const handleLangInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const langAsNumber = Number(e.target.value);
-        setPage(langAsNumber);
+        setLang(langAsNumber);
     }
 
     return (

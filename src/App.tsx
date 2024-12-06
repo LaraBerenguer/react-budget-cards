@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 import Card from './components/Card.tsx';
 import Header from './components/Header.tsx';
