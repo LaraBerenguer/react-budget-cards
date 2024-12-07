@@ -31,7 +31,7 @@ export default function WebOptions() {
                         <input
                             name="pagesInput"
                             type="number"
-                            defaultValue={0}
+                            placeholder="0"
                             value={page}
                             onChange={handlePageInput}
                             id="pagesInput"
@@ -50,7 +50,7 @@ export default function WebOptions() {
                     <input
                         name="langInput"
                         type="number"
-                        defaultValue={0}
+                        placeholder="0"
                         value={lang}
                         onChange={handleLangInput}
                         id="langInput"

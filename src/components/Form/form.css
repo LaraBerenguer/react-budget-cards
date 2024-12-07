@@ -1,0 +1,70 @@
+.clientForm {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 700px;
+    width: 90%;
+}
+
+.labelForm{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.clientForm form {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.clientForm input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin: 5px auto;
+}
+
+.clientForm input:focus {
+    border-color: #8b3d99;
+    outline: none;
+    box-shadow: 0 0 5px #770ba9;
+}
+
+.clientForm button {
+    width: 25%;
+    padding: 10px;
+    background-color: #8b3d99;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px auto;
+}
+
+.clientForm button:hover {
+    background-color: #770ba9;
+}
+
+@media (max-width: 700px) {
+    .clientForm {
+        padding: 15px;
+    }
+
+    .clientForm input {
+        font-size: 0.9rem;
+    }
+
+    .clientForm button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

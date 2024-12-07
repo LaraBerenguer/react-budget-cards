@@ -2,8 +2,11 @@ import React from "react";
 
 import Card from '../Card/Card.tsx';
 import Header from '../Header/Header.tsx';
+//import Data from '../../data.tsx';
 import services from '../../data.tsx';
+
 import TotalPrice from "../TotalPrice/TotalPrice.tsx";
+import Form from "../Form/Form.tsx";
 
 //Interfaces
 
@@ -23,17 +26,33 @@ export interface WebOptionsProps {
     setLang: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface Data {
+    id: number,
+    name: string,
+    description: string,
+    price: number
+};
+
+
 export interface TotalPriceProps {
     price: () => number;
 }
 
-//Context
+export interface ClientProps {
+    data: Data[],    
+    isChecked: boolean[],
+    price: () => number;
+    page: number;
+    lang: number;
+}
+
+//Context + values for null
 
 export const webOptionsContent = React.createContext<WebOptionsProps>({
     page: 0,
-    setPage: () => {},
+    setPage: () => { },
     lang: 0,
-    setLang: () => {},
+    setLang: () => { },
 });
 
 export const cardContent = React.createContext<CardProps>({
@@ -45,9 +64,17 @@ export const cardContent = React.createContext<CardProps>({
     handleCheck: () => { },
 });
 
-//App
+export const clientContent = React.createContext<ClientProps>({
+    data: [],
+    isChecked: [],
+    price: () => 0,
+    page: 0,
+    lang: 0
+});
 
-const App = () => {
+//Pricing App
+
+const Pricing = () => {
     const [checkedState, setCheckedState] = React.useState<boolean[]>(Array(services.length).fill(false));
 
     //Web Card Options State
@@ -58,7 +85,7 @@ const App = () => {
     //Functions
 
     function calculateExtrasPrice() {
-        return (page + lang)*30;
+        return (page + lang) * 30;
     }
 
     function calculateTotalPrice() {
@@ -74,10 +101,10 @@ const App = () => {
         newChecked[index] = !newChecked[index];
         setCheckedState(newChecked);
     };
-
+    
     return (
 
-        <div className="Container">
+        <div className="pricingContainer">
             <Header />
             {services.map((service, index) => (
                 <>
@@ -86,12 +113,14 @@ const App = () => {
                             <Card />
                         </webOptionsContent.Provider>
                     </cardContent.Provider>
-
                 </>
             ))}
             <TotalPrice price={calculateTotalPrice} />
+            <clientContent.Provider value={{ data: services, isChecked: checkedState, price: calculateTotalPrice, page: page, lang: lang }}>
+                <Form />
+            </clientContent.Provider>
         </div>
     );
 };
 
-export default App;
+export default Pricing;

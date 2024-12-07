@@ -1,0 +1,59 @@
+.priceContainer {
+    text-align: right;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;    
+    margin: 20px auto;
+    max-width: 700px;
+    width: 90%;
+}
+
+.priceTextContainer {
+    margin-bottom: 15px;
+}
+
+.priceText h2 {
+    color: #8b3d99;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.priceNumberContainer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+}
+
+.priceNumber h2 {
+    color: #000;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.priceTag p {
+    font-size: 1.5rem;
+    color: #000;
+    margin: 0;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .priceContainer {
+        padding: 15px;
+    }
+
+    .priceText h2 {
+        font-size: 1.3rem;
+    }
+
+    .priceNumber h2 {
+        font-size: 1.8rem;
+    }
+
+    .priceTag p {
+        font-size: 1.3rem;
+    }
+}
