@@ -1,57 +1,45 @@
-import { useContext, useState } from "react";
-import { clientContent } from "../Pricing/Pricing";
-import { ClientDataProps } from "../Form/Form";
+import { useState, useEffect } from "react";
+import {FinalData} from "../Form/Form";
 import "./clientCard.css";
 
-export default function ClientCard() {
+//Interface
 
-    //Handling checked services
+interface ClientCardProps {
+    finalData: FinalData;
+}
 
-    let clientContext = useContext(clientContent);
-    let { data, isChecked, price, page, lang } = clientContext;
+export default function ClientCard({ finalData }: ClientCardProps ) {
 
-    function checkedServices() {
+    const [budget, setBudget] = useState<FinalData>({
+        name: "",
+        phone: "",
+        email: "",
+        services: [],
+        price: 0
+    });
 
-        let checkedList = [];
-        {
-            for (let i = 0; i < isChecked.length; i++) {
-                if (isChecked[i]) {
-                    checkedList.push({name: data[i].name, id: data[i].id});
-                }
-            }
-        }
+    useEffect(() => {setBudget(finalData)}, []);
 
-        return checkedList;
-    };
-
-    //Handling form values
-
-    let dataContext = useContext(ClientDataProps);
-    let { name, phone, email } = dataContext;   
-    
-    //Handling all info
-
-    const [allInfo, setAllInfo] = useState({})
-
+    const servicesList = budget.services.map((service) => service.name).join(", ");    
 
     return (
         <div className="clientCardsContainer">
             <div className='clientInfoContainer'>
-                <h2 className='clientName'>{name}</h2>
-                <p className='clientPhone'>{phone}</p>
-                <p className='clientMail'>{email}</p>
+                <h2 className='clientName'>{budget.name}</h2>
+                <p className='clientPhone'>{budget.phone}</p>
+                <p className='clientMail'>{budget.email}</p>
             </div>
             <div className='clientServicesContainer'>
                 <p>Services:</p>
-                <p className='servicesList'>{checkedServices().map(service => service.name).join("\n")}</p>
-                {checkedServices().some(service => service.id === 3) && (<p>({page} pages, {lang} languages)</p>)}
+                <p className='servicesList'>{servicesList}</p>
+                {budget.services.some(service => service.id === 3) && (<p>({budget.page} pages, {budget.lang} languages)</p>)}
             </div>
             <div className="clientPriceContainer">
                 <div className="priceText">
                     <p>Total:</p>
                 </div>
                 <div className="priceNumber">
-                    <h2>{price()}</h2>
+                    <h2>{budget.price}</h2>
                 </div>
                 <div className="priceTag">
                     <p>€</p>
@@ -60,3 +48,8 @@ export default function ClientCard() {
         </div>
     )
 }
+
+//state para cada parámetro
+//state del objeto entero final pero para eso lo paso desde form ya hecho
+//hacer el map en pricing?? haciendo que clientcard no sea hijo de form sino de pricing
+//no sé
