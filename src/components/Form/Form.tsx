@@ -1,5 +1,5 @@
 import "./form.css";
-import React from "react";
+import React, { useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
@@ -36,6 +36,8 @@ export default function Form() {
 
     const [isVisible, setIsVibible] = React.useState(false);
 
+    const [budgetList, setBudgetList] = useState<FinalData[]>([]);
+
     //Get context
 
     let dataContext = useContext(clientContent);
@@ -48,9 +50,23 @@ export default function Form() {
         setClientData({ ...clientData, [name]: value, })
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>, ) => {
         e.preventDefault();
-        setIsVibible(!isVisible);
+        setIsVibible(isVisible ? isVisible : !isVisible);
+        const checkedExtras = checkedServices();
+
+        let finalClientData: FinalData = {
+            name: clientData.name,
+            phone: clientData.phone,
+            email: clientData.email,
+            services: checkedExtras,
+            price: price(),
+            lang: lang,
+            page: page
+        };
+
+        setBudgetList([...budgetList, finalClientData]);
+        console.log("Budget List: ", budgetList);
     }
 
     //Functions
@@ -68,25 +84,6 @@ export default function Form() {
 
         return checkedList;
     };
-
-    //const checkedExtras = data.filter((_, index) => isChecked[index]).map(service => ({ name: service.name, id: service.id }));
-    const checkedExtras = checkedServices();
-
-    let finalClientData: FinalData = {
-        name: "",
-        phone: "",
-        email: "",
-        services: [],
-        price: 0
-    };
-
-    finalClientData.name = clientData.name;
-    finalClientData.phone = clientData.phone;
-    finalClientData.email = clientData.email;
-    finalClientData.services = checkedExtras;
-    finalClientData.page = page;
-    finalClientData.lang = lang;
-    finalClientData.price = price();
 
     return (
         <div className="finalEstimationContainer">
@@ -122,8 +119,13 @@ export default function Form() {
                 </form>
             </div>
             <div className="estimationsContainer">
-                {isVisible && (<ClientCard finalData={finalClientData} />)}
+                {isVisible && budgetList.map( (item, index)=> (<ClientCard key={index} finalData={item} />))}
             </div>
         </div>
     )
 };
+
+
+//Buscar el orden en el que ocurren las cosas en form, sobre todo con dataContext, que parece que no lo uso??? Lo paso como prop pero no hace nada aquí en budgetList
+//Es posible que setBudgetList tenga que moverlo a client o budget a Form para que lo hagan a la vez?
+//VISIBLE TRUE

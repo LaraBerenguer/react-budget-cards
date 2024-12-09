@@ -1,3 +1,9 @@
+.welcomeContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
 .welcome {
     background-color: #ffffff;
     padding: 2rem;

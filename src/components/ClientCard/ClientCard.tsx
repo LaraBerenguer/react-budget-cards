@@ -18,7 +18,8 @@ export default function ClientCard({ finalData }: ClientCardProps ) {
         price: 0
     });
 
-    useEffect(() => {setBudget(finalData)}, []);
+    useEffect(() => {setBudget(finalData)}/*, [finalData]*/);
+    console.log("Budget: ", budget);
 
     const servicesList = budget.services.map((service) => service.name).join(", ");    
 
