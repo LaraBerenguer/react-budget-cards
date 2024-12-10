@@ -104,7 +104,7 @@ const Pricing = () => {
     
     return (
 
-        <div className="pricingContainer">
+        <div className="pricingContainer p-5 sm:p-8">
             <Header />
             {services.map((service, index) => (
                 <>

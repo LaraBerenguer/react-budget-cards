@@ -1,18 +1,11 @@
-.allContainer {
-    padding: 20px;
-      
+@import url('https://fonts.googleapis.com/css2?family=Oi&family=Modak&family=Shrikhand:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.imgLogo {
+    height: 24px;
+    width: 24px;
 }
 
-.logoContainer {
-    color: #000;
-    padding: 20px;
+.headerText {
+    font-family: 'Shrikhand', serif;
     
-}
-
-.headerContainer {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
 }

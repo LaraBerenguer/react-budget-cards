@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <div className='allContainer'>
-            <div className='navContainer'>                
-                <div className='logoContainer'>
-                <img src="/images/logo.png" alt="Frontender.itacademy" />
-                </div>
-                <div className='welcomeBtnContainer'>
-                <Link to="/">Go back to Instructions</Link> 
-                </div>
+        <div className='allContainer py-5 mx-auto my-5 max-w-2xl w-9/10'>
+            <div className='navContainer flex justify-between items-center'>
+                <div className='logoContainer text-white p-5 flex flex-row'>
+                    <img className="imgLogo" src="././src/assets/img/sparkle.png" alt="Frontender.itacademy" />                    
+                    <Link to="/" className='text-white hover:text-custom-purple'> Frontender.itacademy</Link>
+                </div>                
             </div>
-            <div className='headerContainer'>
+            <div className='headerContainer text-center p-10 bg-transparent rounded-lg  mx-auto'>
                 <div className='headerText'>
-                    <h1>Consigue la mejor calidad</h1>
+                    <h1 className='text-7xl text-white'>Get the best quality</h1>
                 </div>
             </div>
         </div>
