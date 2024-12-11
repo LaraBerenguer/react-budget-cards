@@ -36,7 +36,7 @@ export default function Card() {
             </div>
             <div>
                 {key === 3 && isChecked && (
-                    <div className='webOptionsContainer'>
+                    <div className='optionsHere flex-wrap items-center'>
                         <WebOptions />
                     </div>
                 )}
