@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <div className='allContainer py-5 mx-auto my-5 max-w-2xl w-9/10'>
+        <div className='allContainer py-5 mx-auto mt-5 max-w-2xl w-9/10'>
             <div className='navContainer flex justify-between items-center'>
                 <div className='logoContainer text-white p-5 flex flex-row'>
                     <img className="imgLogo" src="././src/assets/img/sparkle.png" alt="Frontender.itacademy" />                    

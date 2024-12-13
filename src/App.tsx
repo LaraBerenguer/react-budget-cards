@@ -7,7 +7,7 @@ import Pricing from "./components/Pricing/Pricing.tsx";
 const App = () => {
     return (
 
-        <div className="App sm:mx-8 lg:mx-16 xl:mx-24 max-w-screen-lg mx-auto">
+        <div className="App mx-auto max-w-screen-lg p-4 sm:p-8 lg:p-16">
             <Routes>
                 <Route path="/" element={<Welcome />} />
                 <Route path="/pricing" element={<Pricing />} />

@@ -1,8 +1,9 @@
-import "./form.css";
-import React, { useState } from "react";
+//import "./form.css";
+import React, { useEffect, useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
+import Filters from "../Filters/Filters";
 
 //Interfaces
 
@@ -20,6 +21,12 @@ export interface FinalData {
     page?: number;
     lang?: number;
     price: number;
+    date: Date;
+}
+
+export interface FilterProps {
+    list: FinalData[];
+    setBudgetList: React.Dispatch<React.SetStateAction<FinalData[]>>
 }
 
 //Form
@@ -37,6 +44,7 @@ export default function Form() {
     const [isVisible, setIsVibible] = React.useState(false);
 
     const [budgetList, setBudgetList] = useState<FinalData[]>([]);
+    const [unorderedList, setUnorderedList] = useState<FinalData[]>([]);
 
     //Get context
 
@@ -50,7 +58,7 @@ export default function Form() {
         setClientData({ ...clientData, [name]: value, })
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>, ) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>,) => {
         e.preventDefault();
         setIsVibible(isVisible ? isVisible : !isVisible);
         const checkedExtras = checkedServices();
@@ -62,13 +70,23 @@ export default function Form() {
             services: checkedExtras,
             price: price(),
             lang: lang,
-            page: page
+            page: page,
+            date: new Date(),
         };
 
-        setBudgetList([...budgetList, finalClientData]);
-        console.log("Budget List: ", budgetList);
+        console.log("Budget List: 1", budgetList);
+        console.log(finalClientData);
+        setBudgetList(prevList => [...prevList, finalClientData]);
+        setUnorderedList(prevList => [...prevList, finalClientData]);
+        console.log("Budget List: 2", budgetList);
+        
+        
     }
 
+    useEffect(() => {
+        console.log("Updated Budget List:", budgetList);
+    }, [budgetList]);
+    
     //Functions
 
     function checkedServices() {
@@ -86,46 +104,85 @@ export default function Form() {
     };
 
     return (
-        <div className="finalEstimationContainer">
-            <div className='clientForm'>
-                <form onSubmit={handleSubmit}>
-                    <label className="labelForm">
-                        <input required
-                            name="name"
-                            type="text"
-                            placeholder="Name"
-                            value={clientData.name}
-                            onChange={handleForm}
-                            id="clientName"
-                        />
-                        <input required
-                            name="phone"
-                            type="text"
-                            placeholder="Phone"
-                            value={clientData.phone}
-                            onChange={handleForm}
-                            id="clientPhone"
-                        />
-                        <input required
-                            name="email"
-                            type="email"
-                            placeholder="Mail"
-                            value={clientData.email}
-                            onChange={handleForm}
-                            id="clientMail"
-                        />
-                    </label>
-                    <button type="submit">Request Estimation</button>
-                </form>
+        <div>
+            <div className="finalEstimationContainer bg-white rounded-lg shadow-lg mx-auto my-5 max-w-2xl w-9/10 p-4">
+                <div className="formAllObjects w-full">
+                    <div className='clientForm flex'>
+                        <form onSubmit={handleSubmit} className="flex flex-wrap sm:flex-nowrap gap-3 w-full">
+                            <label className="flex items-center gap-2 grow">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 16 16"
+                                    fill="currentColor"
+                                    className="h-4 w-4 opacity-70">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                                </svg>
+                                <input required
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                                    name="name"
+                                    type="text"
+                                    placeholder="Name"
+                                    value={clientData.name}
+                                    onChange={handleForm}
+                                    id="clientName"
+                                />
+                            </label>
+                            <label className="flex items-center gap-2 grow">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 16 16"
+                                    fill="currentColor"
+                                    className="h-4 w-4 opacity-70">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                                </svg>
+                                <input required
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                                    name="phone"
+                                    type="text"
+                                    placeholder="Phone"
+                                    value={clientData.phone}
+                                    onChange={handleForm}
+                                    id="clientPhone"
+                                />
+                            </label>
+                            <label className="flex items-center gap-2 grow">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 16 16"
+                                    fill="currentColor"
+                                    className="h-4 w-4 opacity-70">
+                                    <path
+                                        d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+                                    <path
+                                        d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+                                </svg>
+                                <input required
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Mail"
+                                    value={clientData.email}
+                                    onChange={handleForm}
+                                    id="clientMail"
+                                />
+                            </label>                        
+                            <button type="submit"
+                                className="relative inline-flex items-center justify-center px-4 py-1.5 border border-custom-purple text-custom-purple bg-transparent font-medium text-sm rounded-md transition-all duration-200 ease-in-out whitespace-nowrap hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-purple-500 sm:w-auto w-full">
+                                Request price</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div className="formFilters mb-4">
+                    <Filters list={budgetList} unorderedList={unorderedList} setBudgetList={setBudgetList}  />
+                </div>
             </div>
             <div className="estimationsContainer">
-                {isVisible && budgetList.map( (item, index)=> (<ClientCard key={index} finalData={item} />))}
+                {budgetList.map((item, index) => (<ClientCard key={index} finalData={item}/>))}
             </div>
         </div>
     )
 };
-
-
-//Buscar el orden en el que ocurren las cosas en form, sobre todo con dataContext, que parece que no lo uso??? Lo paso como prop pero no hace nada aquí en budgetList
-//Es posible que setBudgetList tenga que moverlo a client o budget a Form para que lo hagan a la vez?
-//VISIBLE TRUE
