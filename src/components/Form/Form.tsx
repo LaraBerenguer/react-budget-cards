@@ -49,7 +49,7 @@ export default function Form() {
     //Get context
 
     let dataContext = useContext(clientContent);
-    let { data, isChecked, price, page, lang } = dataContext;
+    let { data, isChecked, price, page, lang, isDiscount, calculateDiscount } = dataContext;
 
     //Handle Form
 
@@ -62,13 +62,15 @@ export default function Form() {
         e.preventDefault();
         setIsVibible(isVisible ? isVisible : !isVisible);
         const checkedExtras = checkedServices();
+        const isPrice = isDiscount ? calculateDiscount() : price();
+        
 
         let finalClientData: FinalData = {
             name: clientData.name,
             phone: clientData.phone,
             email: clientData.email,
             services: checkedExtras,
-            price: price(),
+            price: isPrice,
             lang: lang,
             page: page,
             date: new Date(),
