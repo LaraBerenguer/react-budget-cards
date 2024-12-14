@@ -1,12 +1,3 @@
-.Card {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    margin: 20px;
-    display: flex;
-    flex-direction: row;  
-    align-items: center;
-    justify-content: space-around; 
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
 }

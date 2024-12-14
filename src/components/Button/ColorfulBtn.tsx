@@ -4,7 +4,7 @@ interface ColorfulBtnProps {
 
 export default function ColorfulBtn({ onClick }: ColorfulBtnProps) {
     return (
-        <div>
+        <div className="flex items-center">
             <button onClick={onClick} className="inline-flex items-center justify-center w-5 h-5 text-indigo-100 transition-colors duration-150 bg-custom-purple rounded-full focus:shadow-outline hover:bg-dark-purple">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,6 @@ export default function ColorfulBtn({ onClick }: ColorfulBtnProps) {
                 </svg>
             </button>
         </div>
-
     )
 }
 

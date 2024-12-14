@@ -46,13 +46,13 @@ export default function WebOptions() {
         <div className='webOptionContainer bg-transparent mx-auto my-5 max-w-2xl w-9/10 flex flex-col items-end'>
             <div className='pagesContainer flex flex-row items-center my-1'>
                 <label className="flex flex-row items-center">
-                    <div className="mx-2">
+                    <div className="mx-2 flex items-center">
                         <ColorfulBtn onClick={openPage} />
                     </div>
                     <InfoModal isOpen={openInfoPage} onClose={closePage} idNumber={1} />
 
-                    <p className="text-white">Number of pages</p>
-                    <button className="text-custom-gray items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex" onClick={() => {
+                    <p className="text-white mx-2">Number of pages</p>
+                    <button className="text-white items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex transition-transform duration-150 hover:scale-110" onClick={() => {
                         if (page < 1) {
                             setPage(0)
                         } else { setPage(page - 1) }
@@ -66,17 +66,17 @@ export default function WebOptions() {
                         id="pagesInput"
                     />
                 </label>
-                <button className="text-custom-gray items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex" onClick={() => setPage(page + 1)}> + </button>
+                <button className="text-white items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex transition-transform duration-150 hover:scale-110" onClick={() => setPage(page + 1)}> + </button>
             </div>
 
             <div className='langContainer flex flex-row items-center my-1'>
                 <label className="flex flex-row items-center">
-                    <div className="mx-2">
+                    <div className="mx-2 flex items-center">
                         <ColorfulBtn onClick={openLang} />
                     </div>
                     <InfoModal isOpen={openInfoLang} onClose={closeLang} idNumber={2} />
-                    <p className="text-white">Number of languages</p>
-                    <button className="text-custom-gray items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex" onClick={() => {
+                    <p className="text-white mx-2">Number of languages</p>
+                    <button className="text-white items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex transition-transform duration-150 hover:scale-110" onClick={() => {
                         if (lang < 1) {
                             setLang(0)
                         } else { setLang(lang - 1) }
@@ -90,7 +90,7 @@ export default function WebOptions() {
                         id="langInput"
                     />
                 </label>
-                <button className="text-custom-gray items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex" onClick={() => setLang(lang + 1)}> + </button>
+                <button className="text-white items-center justify-center w-5 h-5 border rounded-full text-sm p-1 m-1 inline-flex transition-transform duration-150 hover:scale-110" onClick={() => setLang(lang + 1)}> + </button>
             </div>
         </div>
     )

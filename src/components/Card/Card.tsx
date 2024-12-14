@@ -11,18 +11,18 @@ export default function Card() {
 
     return (
         <div>
-            <div className="Card bg-white rounded-lg shadow-lg mx-auto my-5 max-w-2xl w-9/10 flex">
+            <div className={`Card bg-white rounded-lg shadow-lg mx-auto my-5 max-w-2xl w-9/10 px-7 py-8 flex items-center ${isChecked ? 'ring-4 ring-custom-pink' : ''}`}>
                 
                 <div className='CardTextContainer text-left flex-1 pr-4'>
                     <h2 className='CardTitle text-2xl font-semibold text-ligh-gray'>{title}</h2>
-                    <p className='CardDescription text-custom-gray text-base mb-4'>{description}</p>
+                    <p className='CardDescription text-custom-gray text-base '>{description}</p>
                 </div>
                 <div className="CardRigthContainer flex flex-row justify-between gap-8">
-                    <div className='CardPriceContainer flex items-center mb-4'>
-                        <p className='CardPrice text-xl font-bold text-custom-purple'>{price}</p>
+                    <div className='CardPriceContainer flex items-center'>
+                        <p className='CardPrice text-2xl font-bold text-custom-purple'>{price}</p>
                         <p className='text-lg text-custom-purple'>€</p>
                     </div>
-                    <div className='CardInputContainer flex justify-center items-center mb-4'>
+                    <div className='CardInputContainer flex justify-center items-center'>
                         <input
                             type="checkbox"
                             id={`${key}`}
@@ -36,7 +36,7 @@ export default function Card() {
             </div>
             <div>
                 {key === 3 && isChecked && (
-                    <div className='optionsHere flex-wrap items-center'>
+                    <div className='optionsHere flex-wrap items-center animate-fadeIn'>
                         <WebOptions />
                     </div>
                 )}
