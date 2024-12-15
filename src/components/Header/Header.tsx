@@ -4,14 +4,17 @@ import { discountContent } from '../Pricing/Pricing';
 import { useContext } from 'react';
 
 const Header: React.FC = () => {
+
     const { discount, toggle } = useContext(discountContent);
 
     return (
         <div className='allContainer py-5 mx-auto mt-5 max-w-2xl w-9/10'>
             <div className='navContainer flex justify-between items-center'>
-                <div className='logoContainer text-white p-5 flex flex-row'>
-                    <img className="imgLogo" src="././src/assets/img/sparkle.png" alt="Frontender.itacademy" />
-                    <Link to="/" className='text-white hover:text-custom-purple'> Frontender.itacademy</Link>
+                <div className='logoContainer text-white p-5 flex flex-row'> 
+                    <Link to="/" className='flex flex-row items-center gap-1 hover:scale-105 transition-transform duration-500'>
+                    <img className="imgLogo" src="././src/assets/img/sparkle.png" alt="Logo" />
+                    <span className='text-transparent bg-clip-text bg-gradient-to-r from-white via-custom-purple to-custom-pink'> Cosmo Agency</span>
+                    </Link>
                 </div>
             </div>
             <div className='headerContainer text-center p-10 bg-transparent rounded-lg  mx-auto'>

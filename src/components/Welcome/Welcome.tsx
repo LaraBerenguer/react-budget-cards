@@ -3,20 +3,24 @@ import "./welcome.css";
 
 export default function Welcome() {
     return (
-        <div className="flex justify-center items-center min-h-screen px-4 sm:px-8 animate-bounce">
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-sm w-9/10">
-                <h1 className="mb-4 text-2xl font-semibold">Welcome to Cosmo!</h1>
-                <div className="mb-6 text-custom-gray text-base sm:text-sm">
-                    <p>Your trusted agency. Choose the services you need: </p>
-                    <p>- SEO Optimization: We make your website responsive.</p>
-                    <p>- Advertising Campaigns: Boost your visibility.</p>
-                    <p>- Web Development: We build your site from scratch.</p>
-                    <p>Ready?</p>
+        <div className="flex flex-col justify-center items-center h-screen px-4 sm:px-8 overflow-hidden">
+            <h1 className="text-white mb-5 text-3xl sm:text-5xl flex flex-row items-center gap-2">Welcome to Cosmo!</h1>
+            <div className="circle bg-dark-purple-opacity-25 p-6 sm:p-8 rounded-full shadow-2xl text-center max-w-lg w-full absolute -z-10"></div>
+            <div className="text-center max-w-sm w-9/10">
+                <div className="mb-6 text-white text-sm sm:text-base flex flex-col gap-2">
+                    <span><p>Your trusted agency here to create your dream website.</p>
+                        <p>Choose the services you need: </p></span>
+                    <div className=" my-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-custom-pink text-sm sm:text-base flex flex-col gap-2">
+                        <span><p><b>SEO Optimization</b></p></span>
+                        <span><p><b>Advertising Campaigns</b></p></span>
+                        <span><p><b>Web Development</b></p></span>
+
+                    </div>
+                    <span className="my-3"><p>Ready?</p></span>
                 </div>
-                <Link to="/pricing" className="inline-block bg-custom-purple text-white py-2 px-6 text-base sm:text-sm sm:py-1 sm:px-4 font-bold rounded-md transition duration-300 ease-in-out animate-bounce hover:bg-dark-purple">
-                Go to princing</Link>
+                <Link to="/pricing" className="relative inline-flex items-center justify-center px-4 py-1.5 border-2 border-white text-white bg-transparent font-medium text-sm rounded-md transition-all duration-200 ease-in-out whitespace-nowrap hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-purple-500 sm:w-auto w-full">
+                    Go to pricing</Link>
             </div>
         </div>
-
     )
 };

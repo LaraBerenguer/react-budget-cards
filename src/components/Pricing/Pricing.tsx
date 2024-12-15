@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { useNavigate, useLocation} from "react-router-dom";
 import Card from '../Card/Card.tsx';
 import Header from '../Header/Header.tsx';
 //import Data from '../../data.tsx';
@@ -92,6 +92,8 @@ export const discountContent = React.createContext<discountProps>({
 //Pricing App
 
 const Pricing = () => {
+    
+    //Checked State
     const [checkedState, setCheckedState] = React.useState<boolean[]>(Array(services.length).fill(false));
 
     //Web Card Options State
@@ -102,6 +104,10 @@ const Pricing = () => {
     //Discount Toggle State
 
     const [discount, setDiscount] = React.useState<boolean>(false);
+
+    //URL states
+    const navigate = useNavigate();
+    const location = useLocation();
 
     //Functions
 
@@ -131,19 +137,46 @@ const Pricing = () => {
         setDiscount(!discount);
     };
 
+    //URL reading
+
+    useEffect(() => {
+        const parameters = new URLSearchParams(location.search);
+        const page = parseInt(parameters.get("page") || "0");
+        const lang = parseInt(parameters.get("lang") || "0");
+        const discount = parameters.get("discount") === "true";
+        const checkedState = services.map(service => parameters.get(service.name) === "true");
+        
+        setPage(page);
+        setLang(lang);
+        setDiscount(discount);
+        setCheckedState(checkedState);   
+    }, [location.search]);
+
+    //URL update
+
+    function updateUrl() {
+        const parameters = new URLSearchParams();
+        if (page !== 0) {parameters.set("page", page.toString())};
+        if (lang !==0) {parameters.set("lang", lang.toString())};
+        if (discount) {parameters.set("discount", discount.toString())};
+        services.forEach((service, index) => {if (checkedState[index]) {parameters.set(service.name, checkedState[index].toString())}});
+
+        navigate({search: parameters.toString()});   
+    }
+
+    useEffect(() => {updateUrl();}, [page, lang, discount, checkedState]);
+
     return (
 
         <div className="pricingContainer p-5 sm:p-8">
             <discountContent.Provider value={{ discount: discount, toggle: handleToggle }}>
                 <Header />
                 {services.map((service, index) => (
-                    <>
-                        <cardContent.Provider key={service.id} value={{ description: service.description, title: service.name, price: service.price, key: service.id, isChecked: checkedState[index], handleCheck: () => handleCheck(index), isDiscount: discount }}>
-                            <webOptionsContent.Provider key={service.id} value={{ page: page, setPage: setPage, lang: lang, setLang: setLang }}>
-                                <Card />
-                            </webOptionsContent.Provider>
-                        </cardContent.Provider>
-                    </>
+                    <cardContent.Provider key={service.id} value={{ description: service.description, title: service.name, price: service.price, key: service.id, isChecked: checkedState[index], handleCheck: () => handleCheck(index), isDiscount: discount }}>
+                        <webOptionsContent.Provider key={service.id} value={{ page: page, setPage: setPage, lang: lang, setLang: setLang }}>
+                            <Card />
+                        </webOptionsContent.Provider>
+                    </cardContent.Provider>
                 ))}
                 <TotalPrice price={calculateTotalPrice} isDiscount={discount} calculateDiscount={calculateDiscount}  />
                 <clientContent.Provider value={{ data: services, isChecked: checkedState, price: calculateTotalPrice, page: page, lang: lang, isDiscount: discount, calculateDiscount: calculateDiscount }}>

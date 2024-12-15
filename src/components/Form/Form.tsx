@@ -4,6 +4,8 @@ import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
 import Filters from "../Filters/Filters";
+import { useLocation } from "react-router-dom";
+import services from "../../data";
 
 //Interfaces
 
@@ -80,9 +82,7 @@ export default function Form() {
         console.log(finalClientData);
         setBudgetList(prevList => [...prevList, finalClientData]);
         setUnorderedList(prevList => [...prevList, finalClientData]);
-        console.log("Budget List: 2", budgetList);
-        
-        
+        console.log("Budget List: 2", budgetList);  
     }
 
     useEffect(() => {
@@ -103,7 +103,7 @@ export default function Form() {
         }
 
         return checkedList;
-    };
+    };    
 
     return (
         <div>
