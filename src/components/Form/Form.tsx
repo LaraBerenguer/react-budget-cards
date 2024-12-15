@@ -4,9 +4,6 @@ import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
 import Filters from "../Filters/Filters";
-import { useLocation } from "react-router-dom";
-import services from "../../data";
-
 //Interfaces
 
 interface ClientData {
@@ -65,7 +62,7 @@ export default function Form() {
         setIsVibible(isVisible ? isVisible : !isVisible);
         const checkedExtras = checkedServices();
         const isPrice = isDiscount ? calculateDiscount() : price();
-        
+
 
         let finalClientData: FinalData = {
             name: clientData.name,
@@ -82,13 +79,13 @@ export default function Form() {
         console.log(finalClientData);
         setBudgetList(prevList => [...prevList, finalClientData]);
         setUnorderedList(prevList => [...prevList, finalClientData]);
-        console.log("Budget List: 2", budgetList);  
+        console.log("Budget List: 2", budgetList);
     }
 
     useEffect(() => {
         console.log("Updated Budget List:", budgetList);
     }, [budgetList]);
-    
+
     //Functions
 
     function checkedServices() {
@@ -103,7 +100,7 @@ export default function Form() {
         }
 
         return checkedList;
-    };    
+    };
 
     return (
         <div>
@@ -133,11 +130,10 @@ export default function Form() {
                             <label className="flex items-center gap-2 grow">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 16 16"
+                                    viewBox="0 0 24 24"
                                     fill="currentColor"
-                                    className="h-4 w-4 opacity-70">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                                    className="h-6 w-6 text-gray-400">
+                                    <path d="M7 2C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2H7ZM7 4H17V20H7V4ZM12 18.5C11.1716 18.5 10.5 17.8284 10.5 17C10.5 16.1716 11.1716 15.5 12 15.5C12.8284 15.5 13.5 16.1716 13.5 17C13.5 17.8284 12.8284 18.5 12 18.5Z" />
                                 </svg>
                                 <input required
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-custom-pink focus:outline-none"
@@ -169,7 +165,7 @@ export default function Form() {
                                     onChange={handleForm}
                                     id="clientMail"
                                 />
-                            </label>                        
+                            </label>
                             <button type="submit"
                                 className="relative inline-flex items-center justify-center px-4 py-1.5 border border-custom-purple text-custom-purple bg-transparent font-medium text-sm rounded-md transition-all duration-200 ease-in-out whitespace-nowrap hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-purple-500 sm:w-auto w-full">
                                 Request price</button>
@@ -179,11 +175,11 @@ export default function Form() {
             </div>
             <div>
                 <div className="formFilters mb-4">
-                    <Filters list={budgetList} unorderedList={unorderedList} setBudgetList={setBudgetList}  />
+                    { isVisible && (<Filters list={budgetList} unorderedList={unorderedList} setBudgetList={setBudgetList} />)}
                 </div>
             </div>
             <div className="estimationsContainer">
-                {budgetList.map((item, index) => (<ClientCard key={index} finalData={item}/>))}
+                {budgetList.map((item, index) => (<ClientCard key={index} finalData={item} />))}
             </div>
         </div>
     )
