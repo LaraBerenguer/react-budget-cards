@@ -22,6 +22,7 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
 
     // Alphabetical Order
     function alphOrder() {
+        resetOrder();
         if (!list || list.length === 0) { console.log("List is empty") }
         else {
             const alphSorted: FinalData[] = JSON.parse(JSON.stringify(list))
@@ -35,6 +36,7 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
     const [ascending, setAscending] = useState(true);
 
     function dateOrder() {
+        resetOrder();
         if (!list || list.length === 0) { console.log("List is empty") }
         else {
             setAscending(!ascending)
