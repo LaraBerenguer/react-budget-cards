@@ -4,7 +4,7 @@
 
 Welcome! This is my budget estimation tool, built with React and Vite, and featuring a services selection, real-time price calculation, and client information management. The app includes URL parameters for sharing the budgets and different pages, built with React Router. It also has filters, and a clean, responsive design. Hope you like it.
 
-Check the project in my [github page](https://laraberenguer.github.io/react-budget-cards)
+![React estimation budget cards](src/assets/img/react-app-screenshot.jpg)
 
 ## 💻 Technologies Used
 
