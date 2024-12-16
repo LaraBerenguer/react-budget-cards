@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
