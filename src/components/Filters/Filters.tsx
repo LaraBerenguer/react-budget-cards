@@ -26,8 +26,7 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
         if (!list || list.length === 0) { console.log("List is empty") }
         else {
             const alphSorted: FinalData[] = JSON.parse(JSON.stringify(list))
-                .sort((a: FinalData, b: FinalData) => a.name.localeCompare(b.name));
-            console.log("Sort by alph: ", alphSorted)
+                .sort((a: FinalData, b: FinalData) => a.name.localeCompare(b.name));            
             setBudgetList(alphSorted);
         }
     };
@@ -43,9 +42,6 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
 
             const dateSortedAsc = [...list].sort((a: FinalData, b: FinalData) => a.date.getTime() - b.date.getTime());
             const dateSortedDes = [...list].sort((a: FinalData, b: FinalData) => b.date.getTime() - a.date.getTime());
-
-            console.log("Sort by date: ", dateSortedAsc);
-            console.log("Sort by other date: ", dateSortedDes);
 
             ascending ? setBudgetList(dateSortedDes) : setBudgetList(dateSortedAsc);
         }

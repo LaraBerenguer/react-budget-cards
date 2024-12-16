@@ -1,9 +1,9 @@
-//import "./form.css";
 import React, { useEffect, useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
 import { clientContent } from "../Pricing/Pricing";
 import { useContext } from "react";
 import Filters from "../Filters/Filters";
+
 //Interfaces
 
 interface ClientData {
@@ -75,16 +75,9 @@ export default function Form() {
             date: new Date(),
         };
 
-        console.log("Budget List: 1", budgetList);
-        console.log(finalClientData);
         setBudgetList(prevList => [...prevList, finalClientData]);
-        setUnorderedList(prevList => [...prevList, finalClientData]);
-        console.log("Budget List: 2", budgetList);
+        setUnorderedList(prevList => [...prevList, finalClientData]);        
     }
-
-    useEffect(() => {
-        console.log("Updated Budget List:", budgetList);
-    }, [budgetList]);
 
     //Functions
 

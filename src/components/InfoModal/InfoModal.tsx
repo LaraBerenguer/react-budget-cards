@@ -7,8 +7,6 @@ interface ModalProps {
     idNumber: number;
 }
 
-//Convertir el uso de id a map
-
 const InfoModal: React.FC<ModalProps> = ({ isOpen, onClose, idNumber }) => {
 
     return (

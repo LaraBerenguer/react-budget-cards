@@ -19,12 +19,7 @@ export default function ClientCard({ finalData }: ClientCardProps) {
     });
 
     useEffect(() => { setBudget({ ...finalData }) }, [finalData]);
-    //console.log("Budget: ", budget);
-
-    //const servicesList = budget.services.map((service) => service.name).join(", ");
-
-
-
+    
     return (
         <div className="clientCardsContainer">
             <div className="filtersAndClient">

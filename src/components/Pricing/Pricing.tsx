@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
 import Card from '../Card/Card.tsx';
 import Header from '../Header/Header.tsx';
-//import Data from '../../data.tsx';
 import services from '../../data.tsx';
 
 import TotalPrice from "../TotalPrice/TotalPrice.tsx";
