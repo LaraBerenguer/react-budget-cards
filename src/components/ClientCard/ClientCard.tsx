@@ -65,4 +65,4 @@ export default function ClientCard({ finalData }: ClientCardProps) {
             </div>
         </div>
     )
-}
+};

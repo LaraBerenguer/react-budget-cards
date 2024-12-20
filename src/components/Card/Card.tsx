@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { cardContent } from "../../context/context";
+import { cardContent } from "../../context/cardContent";
 import WebOptions from "../WebOptions/WebOptions";
 import './cardStyles.css';
 
@@ -12,7 +12,6 @@ export interface CardProps {
     handleCheck: () => void;
     isDiscount: boolean;
 };
-
 
 export default function Card() {
 

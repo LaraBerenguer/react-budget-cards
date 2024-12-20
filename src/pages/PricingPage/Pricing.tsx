@@ -5,7 +5,10 @@ import Header from '../../components/Header/Header.tsx';
 import services from '../../data/staticDataService.tsx';
 import TotalPrice from "../../components/TotalPrice/TotalPrice.tsx";
 import Form from "../../components/Form/Form.tsx";
-import { discountContent, cardContent, webOptionsContent, clientContent } from "../../context/context.tsx";
+import { discountContent } from "../../context/discountContent.tsx";
+import { clientContent } from "../../context/clientContent.tsx";
+import { cardContent } from "../../context/cardContent.tsx";
+import { webOptionsContent } from "../../context/webOptionsContent.tsx";
 
 const Pricing = () => {    
     
@@ -43,8 +46,6 @@ const Pricing = () => {
         setDiscount(!discount);
     };
 
-    //URL reading
-
     useEffect(() => {
         const parameters = new URLSearchParams(location.search);
         const page = parseInt(parameters.get("page") || "0");
@@ -56,9 +57,7 @@ const Pricing = () => {
         setLang(lang);
         setDiscount(discount);
         setCheckedState(checkedState);   
-    }, [location.search]);
-
-    //URL update
+    }, [location.search]);   
 
     function updateUrl() {
         const parameters = new URLSearchParams();

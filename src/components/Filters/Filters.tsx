@@ -8,9 +8,9 @@ export interface FilterProps {
     setBudgetList: React.Dispatch<React.SetStateAction<FinalData[]>>
 }
 
-export default function Filters({ list, unorderedList, setBudgetList }: FilterProps) {
+export default function Filters({ list, unorderedList, setBudgetList }: FilterProps) {    
 
-    //Search bar    
+    const [ascending, setAscending] = useState(true);
 
     function searchBar(e: React.ChangeEvent<HTMLInputElement>) {
         let value = e.target.value;
@@ -19,8 +19,7 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
         );
         setBudgetList(filteredSearch);
     };
-
-    // Alphabetical Order
+    
     function alphOrder() {
         resetOrder();
         if (!list || list.length === 0) { console.log("List is empty") }
@@ -30,9 +29,6 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
             setBudgetList(alphSorted);
         }
     };
-
-    //Date Order
-    const [ascending, setAscending] = useState(true);
 
     function dateOrder() {
         resetOrder();
@@ -46,8 +42,7 @@ export default function Filters({ list, unorderedList, setBudgetList }: FilterPr
             ascending ? setBudgetList(dateSortedDes) : setBudgetList(dateSortedAsc);
         }
     };
-
-    // Reset Order
+    
     function resetOrder() {
         if (!list || list.length === 0) { console.log("List is empty") }
         else {

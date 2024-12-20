@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { webOptionsContent } from "../../context/context";
+import { webOptionsContent } from "../../context/webOptionsContent";
 import ColorfulBtn from "../Button/ColorfulBtn";
 import InfoModal from '../InfoModal/InfoModal';
 
@@ -12,11 +12,9 @@ export interface WebOptionsProps {
 
 export default function WebOptions() {
 
-    //Getting context
     let webContext = useContext(webOptionsContent);
     let { page, setPage, lang, setLang } = webContext;
-
-    //Handling Info buttons
+   
     const [openInfoPage, setOpenInfoPage] = useState<boolean>(false);
 
     function openPage() {
@@ -36,8 +34,7 @@ export default function WebOptions() {
     function closeLang() {
         setOpenInfoLang(false);
     };
-
-    //Handle Inputs
+    
     const handlePageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const pageAsNumber = Number(e.target.value);
         setPage(pageAsNumber);

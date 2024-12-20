@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
-import { clientContent } from "../../context/context";
+import { clientContent } from "../../context/clientContent";
 import { useContext } from "react";
 import Filters from "../Filters/Filters";
 import { ClientData } from "../../interfaces/ClientData";
@@ -27,11 +27,7 @@ export interface discountProps {
     toggle: () => void;
 }
 
-//Form
-
-export default function Form() {
-
-    //States
+export default function Form() {    
 
     const [clientData, setClientData] = React.useState<ClientData>({
         name: "",
@@ -42,12 +38,8 @@ export default function Form() {
     const [budgetList, setBudgetList] = useState<FinalData[]>([]);
     const [unorderedList, setUnorderedList] = useState<FinalData[]>([]);
 
-    //Get context
-
     let dataContext = useContext(clientContent);
     let { data, isChecked, price, page, lang, isDiscount, calculateDiscount } = dataContext;
-
-    //Handle Form
 
     function handleForm(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -75,8 +67,6 @@ export default function Form() {
         setBudgetList(prevList => [...prevList, finalClientData]);
         setUnorderedList(prevList => [...prevList, finalClientData]);        
     }
-
-    //Functions
 
     function checkedServices() {
 
