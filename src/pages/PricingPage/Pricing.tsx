@@ -1,114 +1,21 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
-import Card from '../Card/Card.tsx';
-import Header from '../Header/Header.tsx';
-import services from '../../data.tsx';
+import Card from '../../components/Card/Card.tsx';
+import Header from '../../components/Header/Header.tsx';
+import services from '../../data/staticDataService.tsx';
+import TotalPrice from "../../components/TotalPrice/TotalPrice.tsx";
+import Form from "../../components/Form/Form.tsx";
+import { discountContent, cardContent, webOptionsContent, clientContent } from "../../context/context.tsx";
 
-import TotalPrice from "../TotalPrice/TotalPrice.tsx";
-import Form from "../Form/Form.tsx";
-
-//Interfaces
-
-interface CardProps {
-    description: string;
-    title: string;
-    price: number;
-    key: number;
-    isChecked: boolean;
-    handleCheck: () => void;
-    isDiscount: boolean;
-};
-
-export interface WebOptionsProps {
-    page: number;
-    setPage: React.Dispatch<React.SetStateAction<number>>;
-    lang: number;
-    setLang: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export interface Data {
-    id: number,
-    name: string,
-    description: string,
-    price: number
-};
-
-export interface TotalPriceProps {
-    price: () => number;
-    isDiscount: boolean;
-    calculateDiscount: () => number;
-}
-
-export interface ClientProps {
-    data: Data[],
-    isChecked: boolean[],
-    price: () => number;
-    page: number;
-    lang: number;
-    isDiscount: boolean;
-    calculateDiscount: () => number;
-}
-
-export interface discountProps {
-    discount: boolean;    
-    toggle: () => void;
-}
-
-//Context + values for null
-
-export const webOptionsContent = React.createContext<WebOptionsProps>({
-    page: 0,
-    setPage: () => { },
-    lang: 0,
-    setLang: () => { },
-});
-
-export const cardContent = React.createContext<CardProps>({
-    description: "",
-    title: "",
-    price: 0,
-    key: 0,
-    isChecked: false,
-    handleCheck: () => { },
-    isDiscount: false,
-});
-
-export const clientContent = React.createContext<ClientProps>({
-    data: [],
-    isChecked: [],
-    price: () => 0,
-    page: 0,
-    lang: 0,
-    isDiscount: false,
-    calculateDiscount: () => 0,
-});
-
-export const discountContent = React.createContext<discountProps>({
-    discount: false,
-    toggle: () => { },
-});
-
-//Pricing App
-
-const Pricing = () => {
+const Pricing = () => {    
     
-    //Checked State
-    const [checkedState, setCheckedState] = React.useState<boolean[]>(Array(services.length).fill(false));
-
-    //Web Card Options State
-
+    const [checkedState, setCheckedState] = React.useState<boolean[]>(Array(services.length).fill(false)); 
     const [page, setPage] = React.useState<number>(0);
     const [lang, setLang] = React.useState<number>(0);
-
-    //Discount Toggle State
-
     const [discount, setDiscount] = React.useState<boolean>(false);
 
-    //URL states
     const navigate = useNavigate();
     const location = useLocation();
-
-    //Functions
 
     function calculateDiscount() {
         return calculateTotalPrice() * 0.8;

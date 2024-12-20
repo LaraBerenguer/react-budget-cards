@@ -1,7 +1,17 @@
 import { useContext } from 'react';
-import { cardContent } from '../Pricing/Pricing';
+import { cardContent } from "../../context/context";
 import WebOptions from "../WebOptions/WebOptions";
 import './cardStyles.css';
+
+export interface CardProps {
+    description: string;
+    title: string;
+    price: number;
+    key: number;
+    isChecked: boolean;
+    handleCheck: () => void;
+    isDiscount: boolean;
+};
 
 
 export default function Card() {

@@ -1,8 +1,14 @@
 import { useContext, useState } from "react";
-import { webOptionsContent } from '../Pricing/Pricing';
+import { webOptionsContent } from "../../context/context";
 import ColorfulBtn from "../Button/ColorfulBtn";
 import InfoModal from '../InfoModal/InfoModal';
 
+export interface WebOptionsProps {
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
+    lang: number;
+    setLang: React.Dispatch<React.SetStateAction<number>>;
+}
 
 export default function WebOptions() {
 

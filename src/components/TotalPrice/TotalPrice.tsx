@@ -1,6 +1,11 @@
 import React from "react";
-import {TotalPriceProps} from '../Pricing/Pricing';
 import "./totalPrice.css";
+
+export interface TotalPriceProps {
+    price: () => number;
+    isDiscount: boolean;
+    calculateDiscount: () => number;
+}
 
 const TotalPrice: React.FC<TotalPriceProps> = ({ price, isDiscount, calculateDiscount }) => {
     return (

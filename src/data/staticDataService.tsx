@@ -1,11 +1,4 @@
-export interface Data {
-    id: number,
-    name: string,
-    description: string,
-    price: number
-};
-
-//crear interface datra en otro fichero y que lo importen tanto data como pricing
+import { Data } from "../interfaces/Data"
 
 const services: Data[] = [{
     id: 1,

@@ -1,6 +1,6 @@
 import './headerStyles.css';
 import { Link } from "react-router-dom";
-import { discountContent } from '../Pricing/Pricing';
+import { discountContent } from "../../context/context";
 import { useContext } from 'react';
 
 const Header: React.FC = () => {

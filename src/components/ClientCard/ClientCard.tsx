@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { FinalData } from "../Form/Form";
-
-//Interface
+import { FinalData } from "../../interfaces/FinalData";
 
 interface ClientCardProps {
     finalData: FinalData;

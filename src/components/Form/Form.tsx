@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import ClientCard from "../ClientCard/ClientCard";
-import { clientContent } from "../Pricing/Pricing";
+import { clientContent } from "../../context/context";
 import { useContext } from "react";
 import Filters from "../Filters/Filters";
-
-//Interfaces
-
-interface ClientData {
-    name: string;
-    phone: string;
-    email: string;
-};
-
-export interface FinalData {
-    name: string;
-    phone: string;
-    email: string;
-    services: { name: string, id: number }[];
-    page?: number;
-    lang?: number;
-    price: number;
-    date: Date;
-}
+import { ClientData } from "../../interfaces/ClientData";
+import { FinalData } from "../../interfaces/FinalData";
+import { Data } from "../../interfaces/Data";
 
 export interface FilterProps {
     list: FinalData[];
     setBudgetList: React.Dispatch<React.SetStateAction<FinalData[]>>
+}
+
+export interface ClientProps {
+    data: Data[],
+    isChecked: boolean[],
+    price: () => number;
+    page: number;
+    lang: number;
+    isDiscount: boolean;
+    calculateDiscount: () => number;
+}
+
+export interface discountProps {
+    discount: boolean;    
+    toggle: () => void;
 }
 
 //Form
@@ -39,9 +38,7 @@ export default function Form() {
         phone: "",
         email: ""
     });
-
     const [isVisible, setIsVibible] = React.useState(false);
-
     const [budgetList, setBudgetList] = useState<FinalData[]>([]);
     const [unorderedList, setUnorderedList] = useState<FinalData[]>([]);
 

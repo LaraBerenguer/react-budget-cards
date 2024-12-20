@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FilterProps from '../Form/Form';
-import { FinalData } from '../Form/Form';
+import { FinalData } from "../../interfaces/FinalData";
 
 export interface FilterProps {
     list: FinalData[];

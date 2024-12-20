@@ -6,7 +6,7 @@ import '../index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Router basename="/react-budget-cards">
+    <Router basename="/">
       <App />
     </Router>
   </React.StrictMode>

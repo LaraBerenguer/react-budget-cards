@@ -1,10 +1,6 @@
-export interface ModalData {
-    id: number,
-    title: string,
-    description: string,
-};
+import { ModalData } from "../interfaces/ModalData";
 
-const ModalData: ModalData[] = [{
+const modalData: ModalData[] = [{
     id: 1,
     title: "Number of pages",
     description: "Choose the pages your project will have. The cost of each page is 30€."
@@ -15,7 +11,7 @@ const ModalData: ModalData[] = [{
     description: "Choose the languages your project will have. The cost of each language is 30€."
 }];
 
-export default ModalData;
+export default modalData;
 
 
 

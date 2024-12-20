@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Welcome from "./components/Welcome/Welcome.tsx";
-import Pricing from "./components/Pricing/Pricing.tsx";
+import Welcome from "./pages/WelcomePage/Welcome.tsx";
+import Pricing from "./pages/PricingPage/Pricing.tsx";
 
 //App
 
