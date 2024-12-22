@@ -15,6 +15,20 @@ Welcome! This is my budget estimation tool, built with React and Vite, and featu
 - Daisy UI
 - React Router
 
+## 💡 Functionalities
+
+- [x] Reusable components
+- [x] Pages
+- [x] Service selection with options
+- [x] Anual discount toggle
+- [x] URL parameters
+- [x] Client info form
+- [x] Requested estimation/Budget
+- [x] Routes and pages
+- [ ] Unit testing
+- [ ] User authentication
+- [ ] Database integration
+
 ## 📋 Requirements
 
 - Node.js and npm installed on your system. You can download them from [nodejs.org](https://nodejs.org/).
