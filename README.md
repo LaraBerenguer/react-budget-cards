@@ -1,5 +1,7 @@
 # React pricing and budget cards
 
+Try it out here :) [https://react-budget-cards.vercel.app/](https://react-budget-cards.vercel.app/)
+
 ## 📄 Description
 
 Welcome! This is my budget estimation tool, built with React and Vite, and featuring a services selection, real-time price calculation, and client information management. The app includes URL parameters for sharing the budgets and different pages, built with React Router. It also has filters, and a clean, responsive design. Hope you like it.
